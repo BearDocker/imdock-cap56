@@ -1,9 +1,0 @@
-server {
-    listen 80;
-    server_name dev.project.com;
-    index index.php index.html;
-    root /var/www/public;
-
-    include /etc/nginx/sites-module/enable-php.conf;
-    include /etc/nginx/sites-module/enable-laravel.conf;
-}

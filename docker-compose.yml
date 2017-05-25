@@ -5,22 +5,22 @@ services:
     #--------------------------------------
     # Web Service
     #--------------------------------------
-    imdock-cnp56:
+    imdock-cap56:
         restart: always
-        image: imagine10255/imdock:cnp56
-#        build:
-#          context: .
-#          dockerfile: Dockerfile
-        container_name: {project-sn}
+        image: imagine10255/imdock:cap56
+        build:
+          context: .
+          dockerfile: Dockerfile
+        container_name: imdock-cap56
         working_dir: /var/www
         ports:
-            - "2001:80"
+            - "2002:80"
 #            - "8022:22"
 #            - "9000:9000"
         volumes:
           - ./website:/var/www
-          - ./sites-enable:/etc/nginx/conf.d
-          - ./conf/nginx.conf:/etc/nginx/nginx.conf
+          - ./sites-enable:/etc/httpd/site-enable
+          - ./conf/apache.conf:/etc/httpd/conf/httpd.conf
           - ./conf/php-ini-overrides.ini:/etc/php.d/zzz-overrides.ini
           #- ./conf/supervisord.conf:/etc/supervisor/supervisord.conf
 

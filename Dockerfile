@@ -19,13 +19,9 @@ RUN yum -y install php56w php56w-fpm php56w-mbstring php56w-xml php56w-mysql php
 RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
 RUN yum -y install php56w-mssql php56w-mcrypt
 
-# Install Nginx
-RUN rpm --import http://ftp.riken.jp/Linux/fedora/epel/RPM-GPG-KEY-EPEL-6 && \
-    rpm -ivh http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm && \
-    yum -y update nginx-release-centos && \
-    cp -p /etc/yum.repos.d/nginx.repo /etc/yum.repos.d/nginx.repo.backup && \
-    sed -i -e "s/enabled=1/enabled=0/g" /etc/yum.repos.d/nginx.repo
-RUN yum -y --enablerepo=nginx install nginx
+# Install Apache
+RUN yum -y install httpd
+
 
 # Ensure that PHP5 FPM is run as root.
 RUN sed -i -e 's/user = apache/user = nginx/' /etc/php-fpm.d/www.conf
@@ -59,13 +55,14 @@ RUN yum clean all && rm -f /var/log/yum.log
 
 
 # Add configuration files
-COPY conf/nginx.conf /etc/nginx/
+# COPY conf/nginx.conf /etc/nginx/
+# COPY conf/nginx.conf /etc/httpd/conf.d/
 COPY conf/supervisord.conf /etc/supervisor/supervisord.conf
 COPY conf/www.conf /etc/php-fpm.d/www.conf
 COPY sites-module /etc/nginx/sites-module
 
 
-VOLUME ["/var/www", "/etc/nginx/conf.d"]
+VOLUME ["/var/www"]
 
 EXPOSE 22 80 443 9000
 
