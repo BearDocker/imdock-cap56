@@ -30,7 +30,7 @@ Centos(Nginx + PHP5.6)
 #### open browser, testing your host-ip, see the phpinfo is success! ctrl+c close this
 #### now, you can move the your project to website dir
     
-    ~/{project-name}/imdock-cnp56 $ vim ./site-enable/default.conf
+    ~/{project-name}/imdock-cap56 $ vim ./site-enable/default.conf
     
 #### setting your custom apache config (volumes: ./website:/var/www → ../{project-dir}:/var/www)
 
