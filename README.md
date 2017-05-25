@@ -7,7 +7,7 @@ Centos(Nginx + PHP5.6)
 
   * you can easy install PHP Framework (ex: Laravel)
 
-  * you can use xdebug mode by PHPStorm(2016.2 or latest)
+  * you can use xdebug mode by PHPStorm(2017.2 or latest)
 
   * this project use management by docker-compose
   
@@ -18,35 +18,34 @@ Centos(Nginx + PHP5.6)
 
     ~ $ mkdir {project-name}
     ~ $ cd {project-name}
-    ~/{project-name} $ git clone https://github.com/imagine10255/imdock-cnp56.git
-    ~/{project-name} $ cd imdock-cnp56
+    ~/{project-name} $ git clone https://github.com/imagine10255/imdock-cap56.git
+    ~/{project-name} $ cd imdock-cap56
 
 
 #### change your custom settting (container_name: {project-name})
 
-    ~/{project-name}/imdock-cnp56 $ vim ./docker-compose-yml
-    ~/{project-name}/imdock-cnp56 $ docker-compose up
+    ~/{project-name}/imdock-cap56 $ vim ./docker-compose-yml
+    ~/{project-name}/imdock-cap56 $ docker-compose up
     
 #### open browser, testing your host-ip, see the phpinfo is success! ctrl+c close this
 #### now, you can move the your project to website dir
     
-    ~/{project-name}/imdock-cnp56 $ cp ./sites-enable/default.vhost.sample ./sites-enable/default.vhost
+    ~/{project-name}/imdock-cnp56 $ vim ./site-enable/default.conf
     
-#### setting your custom nginx config (volumes: ./website:/var/www → ../{project-dir}:/var/www)
+#### setting your custom apache config (volumes: ./website:/var/www → ../{project-dir}:/var/www)
 
-    ~/{project-name}/imdock-cnp56 $ vim ./docker-compose-yml
-    ~/{project-name}/imdock-cnp56 $ vim ./default.vhost
-    ~/{project-name}/imdock-cnp56 $ docker-compose up -d
+    ~/{project-name}/imdock-cap56 $ vim ./docker-compose-yml
+    ~/{project-name}/imdock-cap56 $ vim ./conf/apache.conf
+    ~/{project-name}/imdock-cap56 $ docker-compose up -d
 
 
 ## Reference architecture:
 
 ```txt
 {project-name}
-├── imdock-cnp56
+├── imdock-cap56
 │   ├── conf/
-│   ├── sites-enable/(nginx website setting)
-│   ├── sites-module/
+│   ├── sites-enable/(apache website setting)
 │   ├── website(sample phpinfo)
 │   ├── Dockerfile
 │   └── docker-compose.yml
