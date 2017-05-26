@@ -7,14 +7,14 @@ services:
     #--------------------------------------
     imdock-cap56:
         restart: always
-        image: imagine10255/imdock:cap56
-        build:
-          context: .
-          dockerfile: Dockerfile
+        image: imagine10255/imdock-cap56
+#        build:
+#          context: .
+#          dockerfile: Dockerfile
         container_name: imdock-cap56
         working_dir: /var/www
         ports:
-            - "2002:80"
+            - "2008:80"
 #            - "8022:22"
 #            - "9000:9000"
         volumes:

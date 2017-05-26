@@ -54,12 +54,8 @@ RUN sed -ri 's/#UsePAM no/UsePAM no/g' /etc/ssh/sshd_config && \
 RUN yum clean all && rm -f /var/log/yum.log
 
 
-# Add configuration files
-# COPY conf/nginx.conf /etc/nginx/
-# COPY conf/nginx.conf /etc/httpd/conf.d/
 COPY conf/supervisord.conf /etc/supervisor/supervisord.conf
 COPY conf/www.conf /etc/php-fpm.d/www.conf
-COPY sites-module /etc/nginx/sites-module
 
 
 VOLUME ["/var/www"]
